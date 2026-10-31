@@ -30,3 +30,15 @@ Tạo file .env từ .env.example, điền thông tin kết nối MongoDB Atlas,
     cd frontend
     npm install
     npm run dev
+## Chạy backend bằng Docker
+
+Image trên Docker Hub: https://hub.docker.com/r/kunz1725/backend
+
+Chạy từ image có sẵn:
+    docker run -d -p 5000:5000 --env-file backend/.env kunz1725/backend:latest
+
+Hoặc tự build image:
+    docker build -t kunz1725/backend ./backend
+
+Các biến môi trường cần có (xem backend/.env.example): PORT, MONGODB_URI, CORS_ORIGIN.
+Tệp .env không được đóng gói vào image; truyền biến lúc chạy bằng --env-file hoặc -e.
